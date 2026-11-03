@@ -166,9 +166,9 @@ They verify that:
 
 The following status flow is covered by the tests:
 
-```text
-Open -> Done -> Verified -> Open
-```
+![Kanban action-item lifecycle](../../pictures/kanban-action-item-lifecycle.svg)
+
+*Figure N: Lifecycle of an action item on the Kanban board.*
 
 These tests are related to the requirements for action-item status management,
 data persistence, upcoming deadlines, and deletion of action items.

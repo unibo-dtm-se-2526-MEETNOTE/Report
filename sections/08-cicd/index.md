@@ -138,28 +138,9 @@ The workflow also defines the necessary permissions:
 
 The complete CI/CD process can be summarized as follows:
 
-```text
-Push or pull request
-        |
-        v
-Preliminary checks
-- Compile code
-- Ruff checks
-- Format check
-- mypy
-- Tests with coverage
-        |
-        v
-Cross-platform tests
-- Ubuntu, Windows, macOS
-- Python 3.9 to 3.13
-        |
-        v
-Deploy workflow
-- semantic-release
-- GitHub release and tag
-- PyPI publication
-```
+![MeetNote CI/CD pipeline](../../pictures/ci-cd-pipeline.svg)
+
+*Figure N: Continuous integration, cross-platform testing, and deployment workflow.*
 
 This automation reduces manual work, improves code quality, and ensures that
 new versions of MeetNote are released consistently.

@@ -19,30 +19,9 @@ or Whisper components can be replaced without rewriting the whole application.
 
 The high-level architecture is the following:
 
-```text
-+---------------------------+
-|       User Interface       |
-|         Kivy UI            |
-+-------------+-------------+
-              |
-              v
-+-------------+-------------+
-|    Application Services    |
-|      MeetingService        |
-+------+------+------+------+
-       |      |      |
-       v      |      v
-+------+------+---+---+------+
-| Transcription | AI Analysis |
-|   Whisper     |   Gemini    |
-+---------------+-------------+
-              |
-              v
-+---------------------------+
-|        Persistence         |
-|     SQLite repositories    |
-+---------------------------+
-```
+![MeetNote system architecture](../../pictures/system-architecture.svg)
+
+*Figure 1: High-level architecture of the MeetNote desktop application.*
 
 ### User-interface layer
 
@@ -120,12 +99,9 @@ The only external service is the Google Gemini API. The application
 communicates with it over HTTPS when the user selects the Gemini extractor. The
 Gemini API key is read from the `GEMINI_API_KEY` environment variable.
 
-```text
-+---------------------+        HTTPS        +------------------+
-|     MeetNote        | ------------------> |   Gemini API     |
-| local Kivy desktop  |                     |  Google service  |
-+---------------------+                     +------------------+
-```
+![MeetNote and Gemini API infrastructure](../../pictures/gemini-infrastructure.svg)
+
+*Figure 2: MeetNote communicates with the Gemini API over HTTPS.*
 
 ## Modelling
 
@@ -175,9 +151,9 @@ Each `ActionItem` belongs to exactly one `Meeting`. A meeting can have zero or
 more action items. When a meeting is deleted, its action items are also deleted
 because the database uses a cascading foreign-key relationship.
 
-```text
-Meeting 1 ---- 0..* ActionItem
-```
+![Meeting and action-item relationship](../../pictures/meeting-action-item-relationship.svg)
+
+*Figure 3: One meeting can contain zero or more action items.*
 
 ### Review model
 
@@ -195,14 +171,9 @@ In this model, an action item can have the following statuses:
 
 The allowed transitions are:
 
-```text
-Submitted -> Under review
-Under review -> Verified
-Under review -> Needs changes
-Under review -> Rejected
-Needs changes -> Under review
-Verified -> Completed
-```
+![Administrative review workflow](../../pictures/administrative-review-workflow.svg)
+
+*Figure 4: Administrative lifecycle of an action item.*
 
 This model represents the planned administrative review workflow. A candidate
 action item is first submitted, then reviewed by an administrator. The
@@ -233,19 +204,18 @@ The interaction with Gemini uses JSON responses. The application defines
 Pydantic models for the expected response structure, which makes the parsing of
 Gemini’s output more reliable.
 
-```text
-User -> Kivy UI -> MeetingService -> Transcriber -> SQLite
-User -> Kivy UI -> MeetingService -> Gemini -> SQLite
-```
+![Main interaction flow](../../pictures/main-interaction-flow.svg)
+
+*Figure 5: Interaction flow for transcription and action-item extraction.*
 
 ## Behaviour
 
 The Kanban board represents the state of action items using three visible
 states:
 
-```text
-Open -> Done -> Verified
-```
+![Kanban board action-item states](../../pictures/kanban-board-states.svg)
+
+*Figure 6: Visible action-item states on the Kanban board.*
 
 An action item is created with the `open` status. When the user marks it as
 done, its status changes to `done`. A done item can then be verified. Both done
@@ -254,13 +224,9 @@ and verified items can be reopened, which returns them to the `open` status.
 The application also defines a more detailed review lifecycle for future
 administrative functionality:
 
-```text
-Submitted -> Under review -> Verified -> Completed
-                        |
-                        +-> Needs changes -> Under review
-                        |
-                        +-> Rejected
-```
+![Detailed action-item review lifecycle](../../pictures/detailed-review-lifecycle.svg)
+
+*Figure 7: Detailed administrative review lifecycle for action items.*
 
 In this lifecycle, an item cannot move directly from `Submitted` to `Verified`.
 It must first be placed under review. Likewise, a rejected item cannot be
