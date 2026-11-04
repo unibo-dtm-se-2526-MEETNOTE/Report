@@ -157,6 +157,12 @@ deadline list, and status counters.
 The title of the Kanban board also shows how many action items are currently
 open, done, and verified.
 
+## Returning to the meeting
+
+Click **Back to meeting** at the bottom of the Kanban board to return to the
+Meeting Screen. The current meeting stays selected, so you can extract more
+action items, generate a summary, or open the board again.
+
 > Add screenshots of the Meeting Screen and Kanban Screen here. Before adding
 > screenshots, make sure that no API keys, tokens, personal information, or
 > private meeting content is visible.
