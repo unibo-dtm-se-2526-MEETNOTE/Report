@@ -23,13 +23,23 @@ The project produces the following artifacts:
 - A GitHub release containing the release notes and version tag.
 - A package published to PyPI.
 
-The latest releases produced by the project are:
+The releases produced by the project are:
 
 | Version | Date | Main change |
 |---|---|---|
 | 1.0.0 | 2026-10-13 | Initial stable release, including the Kivy interface, transcription workflow, Gemini action-item extraction, Kanban board, and release automation |
 | 1.1.0 | 2026-10-13 | Added meeting-summary generation using Gemini |
 | 1.1.1 | 2026-10-13 | Fixed validation of the Gemini API key before extractor initialization |
+| 1.1.2 | 2026-10-16 | Fixed the callback that displays the generated meeting summary |
+| 1.1.3 | 2026-10-17 | Added a button to return from the Kanban board to the meeting screen |
+| 1.1.4 | 2026-10-17 | Updated the project README and switched the release to the built-in GitHub workflow token |
+
+Versions 1.1.2 and 1.1.3 were tagged by semantic-release, but their GitHub
+release pages were not created: the personal access token used at the time did
+not have permission to create releases (HTTP 403). From 1.1.4 the workflow uses
+the built-in GitHub Actions token instead. Only version 1.0.0 was published to
+PyPI: publication was accidentally removed from the release configuration in
+1.1.0 and has been restored for the following releases.
 
 The releases are available in the GitHub repository:
 
