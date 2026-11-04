@@ -64,8 +64,10 @@ and you can extract action items or generate a meeting summary.
 3. When the process finishes, the action items appear in the **Action items**
    area.
 
-MeetNote extracts only explicit and concrete tasks. If an action item has a
-responsible person or deadline, this information is also shown.
+MeetNote extracts only explicit and concrete tasks. Each action item is listed
+with its status and, if one was identified, its responsible person, for example
+`• [open] Review the meeting recording — Sahand`. Deadlines are shown on the
+Kanban board.
 
 If no action items are found, MeetNote displays:
 
