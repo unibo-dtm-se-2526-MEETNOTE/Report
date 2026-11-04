@@ -121,3 +121,5 @@ A new release is created through the following workflow:
 
 The user does not need to manually increment the version number or create a
 release tag. This
+is handled entirely by semantic-release, which keeps the version numbers
+consistent with the commit history and avoids manual release mistakes.

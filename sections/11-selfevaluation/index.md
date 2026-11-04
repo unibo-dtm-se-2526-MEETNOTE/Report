@@ -48,3 +48,17 @@ can access its data and manage action items.
 
 Another limitation is that the administrative review workflow is not yet fully
 integrated into the main Kanban interface. The project defines a more detailed
+review lifecycle, with statuses such as `Submitted`, `Under review`,
+`Needs changes`, and `Rejected`, but the current Kanban board mainly uses the
+simpler `Open`, `Done`, and `Verified` statuses.
+
+The quality of the AI-generated results also depends on the clarity of the
+meeting transcript. MeetNote tries to extract only explicit action items, but
+unclear audio, poor transcription quality, or ambiguous discussion can still
+affect the accuracy of the extracted tasks and deadlines.
+
+In future versions, I would like to improve user authentication, complete the
+administrative review workflow, allow users to edit AI-generated action items
+before saving them, and improve the overall accuracy of action-item extraction.
+I would also like to add better support for multiple meetings and projects,
+notifications for approaching deadlines, and a cloud deployment option.
