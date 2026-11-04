@@ -53,9 +53,9 @@ status label shows the current state of the application.
 When transcription is complete, the transcript appears in the **Transcript**
 area of the Meeting Screen.
 
-The status label also shows the length of the generated transcript. At this
-point, the meeting has been saved and you can extract action items or generate
-a meeting summary.
+The status label then shows the meeting identifier, for example
+`Status: meeting submitted (ID 3)`. At this point, the meeting has been saved
+and you can extract action items or generate a meeting summary.
 
 ## Extracting action items
 
