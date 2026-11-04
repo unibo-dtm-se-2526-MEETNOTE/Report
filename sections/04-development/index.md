@@ -136,3 +136,8 @@ to Gemini. For action-item extraction, it asks Gemini to return only explicit
 and concrete tasks, without inventing additional work. For meeting summaries,
 it asks Gemini to include the main discussion points, decisions, and follow-ups
 without adding information that is not present in the
+transcript.
+
+Both requests use the `gemini-3.5-flash-lite` model by default and ask Gemini
+for a JSON response, which is validated with Pydantic before the results are
+saved or displayed.

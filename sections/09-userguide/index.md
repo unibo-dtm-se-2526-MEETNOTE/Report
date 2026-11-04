@@ -53,9 +53,9 @@ status label shows the current state of the application.
 When transcription is complete, the transcript appears in the **Transcript**
 area of the Meeting Screen.
 
-The status label also shows the length of the generated transcript. At this
-point, the meeting has been saved and you can extract action items or generate
-a meeting summary.
+The status label then shows the meeting identifier, for example
+`Status: meeting submitted (ID 3)`. At this point, the meeting has been saved
+and you can extract action items or generate a meeting summary.
 
 ## Extracting action items
 
@@ -64,8 +64,10 @@ a meeting summary.
 3. When the process finishes, the action items appear in the **Action items**
    area.
 
-MeetNote extracts only explicit and concrete tasks. If an action item has a
-responsible person or deadline, this information is also shown.
+MeetNote extracts only explicit and concrete tasks. Each action item is listed
+with its status and, if one was identified, its responsible person, for example
+`• [open] Review the meeting recording — Sahand`. Deadlines are shown on the
+Kanban board.
 
 If no action items are found, MeetNote displays:
 
@@ -154,6 +156,12 @@ deadline list, and status counters.
 
 The title of the Kanban board also shows how many action items are currently
 open, done, and verified.
+
+## Returning to the meeting
+
+Click **Back to meeting** at the bottom of the Kanban board to return to the
+Meeting Screen. The current meeting stays selected, so you can extract more
+action items, generate a summary, or open the board again.
 
 > Add screenshots of the Meeting Screen and Kanban Screen here. Before adding
 > screenshots, make sure that no API keys, tokens, personal information, or

@@ -27,4 +27,5 @@ deadline.
 MeetNote is intended for administrators or meeting organizers who need to
 review the results of a meeting and assign follow-up work. It can be useful for
 student project teams, small organizations, or any group that records meetings
-and wants
+and wants to turn
+its discussions into clear, trackable follow-up work.
