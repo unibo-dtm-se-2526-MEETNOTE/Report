@@ -88,7 +88,10 @@ The system shall extract explicit action items from the meeting transcript.
 - The system does not invent action items when no clear task is present.
 - Each extracted action item contains a description.
 - When explicitly stated in the transcript, an action item includes a responsible person.
-- When explicitly stated in the transcript, an action item includes a deadline in `YYYY-MM-DD` format.
+- When a task is addressed to the whole group, its owner is `everyone`.
+- When a deadline is stated in the transcript, an action item includes it in `YYYY-MM-DD` format.
+- Relative deadlines, such as "tomorrow", "next Monday", "by Friday", or "end of the week", are converted into a `YYYY-MM-DD` date based on the current date.
+- If a deadline cannot be determined, the action item has no deadline.
 - The system shows the number of extracted action items.
 - The user can refresh the list of action items.
 
@@ -115,6 +118,7 @@ The system shall display the action items of a meeting in a Kanban board.
 - Each card shows the action-item description, owner, and deadline.
 - If an action item has no owner, the card shows `All / unassigned`.
 - If an action item has no deadline, the card shows `No deadline`.
+- Each column can be scrolled when it contains more cards than fit on the screen.
 - The user can refresh the board.
 
 ### FR7 — Action-item status management
@@ -193,6 +197,7 @@ source code.
 **Acceptance criteria:**
 
 - The Gemini API key is read from the `GEMINI_API_KEY` environment variable.
+- The key can also be stored in a local `.env` file, which is loaded at startup and excluded from version control.
 - The application does not start the Gemini extractor when the required API key is missing.
 - The application raises a clear error when Gemini is selected but `GEMINI_API_KEY` is not configured.
 
@@ -280,8 +285,8 @@ and automated validation.
 | Meeting recording | An audio or video file containing a recorded meeting |
 | Transcript | The textual representation of the speech contained in a meeting recording |
 | Action item | An explicit task that someone should complete after the meeting |
-| Owner | The person responsible for an action item, when explicitly stated in the transcript |
-| Deadline | An explicit date by which an action item should be completed |
+| Owner | The person responsible for an action item, when explicitly stated in the transcript, or `everyone` for a task addressed to the whole group |
+| Deadline | The date by which an action item should be completed, either stated directly or resolved from a relative expression such as "next Monday" |
 | Meeting summary | A concise description of the main discussion points, decisions, and follow-ups |
 | Kanban board | A visual board that groups action items according to their status |
 | Open action item | An action item that still needs to be completed |

@@ -81,7 +81,11 @@ was chosen because SQLite does not require a separate database server and is
 suitable for a local desktop application.
 
 The Gemini API key is provided through the `GEMINI_API_KEY` environment
-variable. It is not hard-coded in the source code. The application validates
+variable. It is not hard-coded in the source code. At startup, the user interface
+module calls `load_dotenv()` from `python-dotenv`, so the key can also be stored
+in a local `.env` file in the project folder. Variables that are already set in
+the environment take precedence over the file, and `.env` is listed in
+`.gitignore` so that the key is not committed. The application validates
 that the key is present before initializing the Gemini extractor.
 
 The application does not currently implement user authentication or
@@ -105,6 +109,7 @@ The main dependencies used by the project are:
 | google-genai | Integration with the Gemini API |
 | faster-whisper | Optional local transcription of audio recordings |
 | Pydantic | Validation and parsing of structured Gemini responses |
+| python-dotenv | Loading the Gemini API key and settings from a local `.env` file |
 | SQLite | Local persistence of meetings and action items |
 | Poetry | Dependency and packaging management |
 | pytest | Automated testing |
@@ -133,7 +138,13 @@ concise meeting summary.
 
 The application sends the meeting title, optional meeting notes, and transcript
 to Gemini. For action-item extraction, it asks Gemini to return only explicit
-and concrete tasks, without inventing additional work. For meeting summaries,
+and concrete tasks, without inventing additional work. The prompt also contains
+the current date, so that Gemini can convert relative deadlines such as
+"tomorrow", "next Monday", or "end of the week" into `YYYY-MM-DD` dates. If a
+deadline cannot be resolved, the due date is left empty. A task addressed to
+everyone is given the owner `everyone`; otherwise, the owner is left empty when
+no responsible person is stated. The date is read once, when the application
+starts. For meeting summaries,
 it asks Gemini to include the main discussion points, decisions, and follow-ups
 without adding information that is not present in the
 transcript.

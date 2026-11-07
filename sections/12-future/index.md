@@ -33,6 +33,10 @@ The accuracy of action-item extraction depends on the quality of the meeting
 recording and transcript. Background noise, unclear speech, multiple people
 speaking at the same time, or ambiguous discussion can make it more difficult
 for Whisper and Gemini to identify correct action items, owners, and deadlines.
+Relative deadlines are converted by Gemini using the date on which the
+application was started, and the resulting dates are not checked by the
+application. If MeetNote is left running past midnight, the reference date is
+not updated until it is restarted.
 
 Finally, the application currently focuses on one meeting at a time in its main
 workflow. Although meetings and action items are stored in the local database,

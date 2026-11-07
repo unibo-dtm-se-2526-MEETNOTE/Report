@@ -33,13 +33,18 @@ The releases produced by the project are:
 | 1.1.2 | 2026-10-16 | Fixed the callback that displays the generated meeting summary |
 | 1.1.3 | 2026-10-17 | Added a button to return from the Kanban board to the meeting screen |
 | 1.1.4 | 2026-10-17 | Updated the project README and switched the release to the built-in GitHub workflow token |
+| 1.1.5 | 2026-11-04 | Restored building and publishing the package to PyPI |
+| 1.1.6 | 2026-11-04 | Loaded the Gemini API key from a local `.env` file and removed an obsolete template workflow |
+| 1.1.7 | 2026-11-07 | Resolved relative deadlines in the Gemini prompt and made the Kanban columns scrollable |
 
 Versions 1.1.2 and 1.1.3 were tagged by semantic-release, but their GitHub
 release pages were not created: the personal access token used at the time did
 not have permission to create releases (HTTP 403). From 1.1.4 the workflow uses
-the built-in GitHub Actions token instead. Only version 1.0.0 was published to
-PyPI: publication was accidentally removed from the release configuration in
-1.1.0 and has been restored for the following releases.
+the built-in GitHub Actions token instead. Publication to PyPI was accidentally
+removed from the release configuration in 1.1.0 and restored in 1.1.5.
+Therefore, versions 1.0.0, 1.1.5, 1.1.6, and 1.1.7 are available on PyPI, and
+from 1.1.5 each GitHub release includes the wheel and source distribution as
+attached files.
 
 The releases are available in the GitHub repository:
 

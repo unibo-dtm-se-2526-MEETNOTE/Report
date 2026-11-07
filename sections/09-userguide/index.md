@@ -24,6 +24,9 @@ After installing the dependencies, start the application with:
 py -3.12 -m poetry run python -m meetnote
 ```
 
+On Windows, you can also double-click `Start MeetNote.bat` in the project
+folder.
+
 On macOS or Linux, use:
 
 ```bash
@@ -66,8 +69,10 @@ and you can extract action items or generate a meeting summary.
 
 MeetNote extracts only explicit and concrete tasks. Each action item is listed
 with its status and, if one was identified, its responsible person, for example
-`• [open] Review the meeting recording — Sahand`. Deadlines are shown on the
-Kanban board.
+`• [open] Review the meeting recording — Sahand`. A task addressed to the whole
+group can have the owner `everyone`. Deadlines are shown on the Kanban board.
+When Gemini is used, relative deadlines such as "by Friday" are converted into
+dates based on the date on which MeetNote was started.
 
 If no action items are found, MeetNote displays:
 
@@ -102,6 +107,10 @@ Each action-item card shows:
 - The task description.
 - The owner, or `All / unassigned` if no owner was identified.
 - The deadline, or `No deadline` if no deadline was identified.
+
+If a column contains more cards than fit on the screen, scroll within that
+column to see the remaining cards. The column titles stay visible while you
+scroll.
 
 ## Managing action items
 

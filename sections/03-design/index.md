@@ -32,7 +32,8 @@ screens:
   starts transcription, extracts action items, generates a summary, and opens
   the Kanban board.
 - The **Kanban Screen**, where the user reviews action items, changes their
-  status, deletes incorrect items, and checks upcoming deadlines.
+  status, deletes incorrect items, and checks upcoming deadlines. Each column
+  has its own scrollable list of cards, so long lists remain accessible.
 
 The interface uses a background worker thread for long-running operations, such
 as transcription, action-item extraction, and summary generation. This prevents
@@ -97,7 +98,8 @@ also runs locally when Whisper is selected.
 
 The only external service is the Google Gemini API. The application
 communicates with it over HTTPS when the user selects the Gemini extractor. The
-Gemini API key is read from the `GEMINI_API_KEY` environment variable.
+Gemini API key is read from the `GEMINI_API_KEY` environment variable, which can
+also be defined in a local `.env` file.
 
 ![MeetNote and Gemini API infrastructure](../../pictures/gemini-infrastructure.svg)
 
@@ -145,7 +147,8 @@ An `ActionItem` has the following attributes:
 - `description`: the task to complete.
 - `owner`: the responsible person, if known.
 - `status`: the current state of the item.
-- `due_date`: the deadline, if explicitly stated.
+- `due_date`: the deadline, if one is stated or can be resolved from the
+  transcript.
 
 Each `ActionItem` belongs to exactly one `Meeting`. A meeting can have zero or
 more action items. When a meeting is deleted, its action items are also deleted
@@ -262,7 +265,7 @@ The database contains two tables:
 | `meeting_id` | Integer | Foreign key to the meeting |
 | `description` | Text | Task to complete |
 | `owner` | Text | Responsible person, if known |
-| `due_date` | Text | Deadline, if explicitly stated |
+| `due_date` | Text | Deadline in `YYYY-MM-DD` format, if one is stated or can be resolved |
 | `status` | Text | Current status of the action item |
 
 The `action_items.meeting_id` column refers to `meetings.id`. Foreign keys are

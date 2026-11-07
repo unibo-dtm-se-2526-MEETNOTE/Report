@@ -16,6 +16,12 @@ The project has two main workflows:
   workflow.
 - `deploy.yml`, which performs the release and publication process.
 
+The repository also contains `python-publish.yml` ("Upload Python Package"), a
+GitHub template workflow that builds the package and publishes it to PyPI with
+trusted publishing when a GitHub release is published. Releases created by
+semantic-release with the built-in GitHub token do not start other workflows,
+so this workflow has not run so far. Publication is performed by `deploy.yml`.
+
 ## Continuous integration
 
 The `check.yml` workflow runs when code is pushed to the repository, when a

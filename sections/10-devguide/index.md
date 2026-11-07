@@ -59,7 +59,9 @@ meetnote/
 ├── models.py                    # Review model: ActionItem with priority, label and review fields
 └── review.py                    # Allowed status transitions for the review model
 tests/                           # pytest test suite
-.github/workflows/               # check.yml (CI) and deploy.yml (release)
+.github/workflows/               # check.yml (CI), deploy.yml (release), python-publish.yml (unused template)
+Start MeetNote.bat               # Windows launcher
+check_gemini_env.py              # Prints whether GEMINI_API_KEY is visible to Python
 ```
 
 Two `ActionItem` classes exist. `meetnote/domain/models.py` is the one used by
@@ -108,8 +110,17 @@ after a schema change.
 | `MEETNOTE_ACTION_EXTRACTOR` | `fake`, `gemini` | `fake` | `gemini` uses `GeminiActionItemExtractor`; `fake` returns two demo action items. |
 | `GEMINI_API_KEY` | API key | none | Required when the Gemini extractor is selected. |
 
-The variables are read from the process environment. Set them in the shell
-before starting the application. Never commit API keys to the repository.
+The variables are read from the process environment. Set them in the shell, or
+put them in a `.env` file in the project folder: `ui/app.py` calls
+`load_dotenv()` at startup, and variables already set in the shell take
+precedence. `.env` is listed in `.gitignore`; never commit API keys to the
+repository. In VS Code, the workspace setting `python.terminal.useEnvFile` also
+loads `.env` into new terminals.
+
+`check_gemini_env.py` helps to diagnose a missing key. It reports whether
+`GEMINI_API_KEY` is set in the current environment, its length, its first six
+characters, and whether it contains quotes or spaces. It does not load `.env`
+itself, so run it from a terminal where the variables are already set.
 
 The SQLite database is stored in `data/meetnote.db`, relative to the directory
 from which the application is started.
@@ -119,6 +130,9 @@ from which the application is started.
 ```bash
 poetry run python -m meetnote
 ```
+
+On Windows, `Start MeetNote.bat` runs `py -3.12 -m poetry run python -m meetnote`
+from the project folder.
 
 ## Tests and quality checks
 

@@ -21,8 +21,9 @@ generate a concise meeting summary.
 The main purpose of MeetNote is to make meeting outcomes easier to manage. The
 application extracts only explicit and concrete tasks from the transcript, so
 that users can see what was actually agreed during the meeting. When available,
-it also identifies the person responsible for an action item and any explicit
-deadline.
+it also identifies the person responsible for an action item and its deadline.
+Relative deadlines, such as "tomorrow" or "next Monday", are converted into
+calendar dates.
 
 MeetNote is intended for administrators or meeting organizers who need to
 review the results of a meeting and assign follow-up work. It can be useful for

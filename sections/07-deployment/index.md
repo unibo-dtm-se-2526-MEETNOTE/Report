@@ -38,8 +38,8 @@ On macOS or Linux, run:
 poetry install
 ```
 
-This installs the main dependencies, including Kivy and the Google Gemini
-Python library.
+This installs the main dependencies, including Kivy, the Google Gemini Python
+library, and `python-dotenv`.
 
 ### 3. Configure the application
 
@@ -62,6 +62,19 @@ On macOS or Linux:
 export GEMINI_API_KEY="your_gemini_api_key"
 export MEETNOTE_ACTION_EXTRACTOR="gemini"
 ```
+
+Alternatively, create a file named `.env` in the project folder:
+
+```text
+GEMINI_API_KEY=your_gemini_api_key
+MEETNOTE_ACTION_EXTRACTOR=gemini
+```
+
+MeetNote loads this file when it starts. Values already set in the shell take
+precedence. The `.env` file is excluded from Git through `.gitignore`, so the
+key is not committed. It is found when MeetNote is run from the cloned
+repository; when the package is installed with `pip`, set the variables in the
+shell instead.
 
 The application reads the API key from the environment and does not require it
 to be written in the source code. If Gemini is selected but `GEMINI_API_KEY` is
@@ -110,6 +123,11 @@ On Windows, run:
 ```powershell
 py -3.12 -m poetry run python -m meetnote
 ```
+
+Alternatively, on Windows, double-click `Start MeetNote.bat` in the project
+folder. The script runs the same command from the project folder and keeps the
+console window open after the application closes, so that any error messages
+remain visible.
 
 On macOS or Linux, run:
 
@@ -160,10 +178,8 @@ application’s locally stored meetings and action items.
 
 ## PyPI installation
 
-The project is also configured to publish the `meetnote` Python package to
-PyPI through its automated release workflow.
-
-If the package is available on PyPI, it can be installed with:
+The `meetnote` Python package is published to PyPI by the automated release
+workflow. The latest published version is 1.1.7. It can be installed with:
 
 ```bash
 pip install meetnote
