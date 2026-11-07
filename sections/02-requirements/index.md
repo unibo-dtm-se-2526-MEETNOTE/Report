@@ -199,7 +199,7 @@ source code.
 - The Gemini API key is read from the `GEMINI_API_KEY` environment variable.
 - The key can also be stored in a local `.env` file, which is loaded at startup and excluded from version control.
 - The application does not start the Gemini extractor when the required API key is missing.
-- The application raises a clear error when Gemini is selected but `GEMINI_API_KEY` is not configured.
+- When Gemini is selected but `GEMINI_API_KEY` is not configured, the application stops at startup with an error that names the missing key. The error is printed in the console; the application window does not open.
 
 ### NFR4 — Reliability
 

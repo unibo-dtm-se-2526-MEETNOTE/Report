@@ -77,7 +77,8 @@ application on multiple operating systems and Python versions.
 The workflow uses a test matrix with:
 
 - Ubuntu, Windows, and macOS.
-- Python versions 3.9, 3.10, 3.11, 3.12, and 3.13.
+- Python versions 3.11, 3.12, and 3.13, the versions supported by the project
+  according to `pyproject.toml`.
 
 For every combination, the workflow:
 
@@ -122,22 +123,22 @@ prevents accidental package publication during development.
 
 ## GitHub Actions secrets
 
-The deployment workflow uses GitHub Actions secrets to store sensitive values
-securely.
+The deployment workflow uses two tokens:
 
-The following secrets are used:
+| Token | Source | Purpose |
+|---|---|---|
+| `GH_TOKEN` | Built-in `GITHUB_TOKEN`, created automatically for each run | Used by semantic-release to create GitHub tags and releases |
+| `PYPI_TOKEN` | GitHub Actions repository secret | Used to authenticate with PyPI and publish the Python package |
 
-| Secret | Purpose |
-|---|---|
-| `GH_TOKEN` | Used by semantic-release to create GitHub tags and releases |
-| `PYPI_TOKEN` | Used to authenticate with PyPI and publish the Python package |
-
-These secrets are not written directly in the workflow file or in the source
-code. GitHub Actions provides them to the workflow at runtime.
+Only `PYPI_TOKEN` is stored as a secret. Earlier releases used a personal access
+token for `GH_TOKEN`, which lacked permission to create releases; from 1.1.4 the
+built-in token is used. Neither token is written directly in the workflow file
+or in the source code.
 
 The workflow also defines the necessary permissions:
 
-- `contents: write`, needed to create tags and GitHub releases.
+- `contents: write`, needed so that the built-in token can push the release
+  commit and create tags and GitHub releases.
 - `packages: write`, needed for package-related operations.
 
 ## Workflow summary

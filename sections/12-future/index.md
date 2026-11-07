@@ -38,6 +38,10 @@ application was started, and the resulting dates are not checked by the
 application. If MeetNote is left running past midnight, the reference date is
 not updated until it is restarted.
 
+If the Gemini extractor is selected without an API key, MeetNote stops at
+startup and reports the error only in the console, instead of opening its
+window and showing the problem there.
+
 Finally, the application currently focuses on one meeting at a time in its main
 workflow. Although meetings and action items are stored in the local database,
 the user interface does not yet provide a complete interface for browsing,

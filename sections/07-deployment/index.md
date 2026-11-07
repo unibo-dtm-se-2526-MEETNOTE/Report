@@ -78,7 +78,8 @@ shell instead.
 
 The application reads the API key from the environment and does not require it
 to be written in the source code. If Gemini is selected but `GEMINI_API_KEY` is
-missing, MeetNote raises a clear error before initializing the extractor.
+missing, MeetNote stops at startup, before its window opens, and prints an error
+in the console explaining that the key is required.
 
 By default, MeetNote uses the fake transcriber and fake action-item extractor.
 These implementations are useful for testing the application without processing
@@ -92,13 +93,13 @@ video file locally, the optional Whisper dependencies must be installed.
 Install them with:
 
 ```powershell
-py -3.12 -m poetry install --extras whisper
+py -3.12 -m poetry install --with whisper
 ```
 
 Or, on macOS or Linux:
 
 ```bash
-poetry install --extras whisper
+poetry install --with whisper
 ```
 
 Then set the transcriber environment variable:

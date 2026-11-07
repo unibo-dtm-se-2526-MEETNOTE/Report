@@ -70,13 +70,15 @@ Semantic-release analyzes the commit history and decides whether the version
 should be updated. It uses the Conventional Commits messages written during
 development to determine the type of release.
 
-The workflow uses the following secrets:
+The workflow uses two tokens:
 
-- `GH_TOKEN`: used by semantic-release to create GitHub releases and tags.
-- `PYPI_TOKEN`: used to authenticate and publish the package to PyPI.
+- `GH_TOKEN`: used by semantic-release to create GitHub releases and tags. It is
+  set from the built-in `GITHUB_TOKEN`, which GitHub Actions creates
+  automatically for each workflow run, so it is not stored as a secret.
+- `PYPI_TOKEN`: used to authenticate and publish the package to PyPI. It is
+  stored as a GitHub Actions repository secret.
 
-These values are stored as GitHub Actions secrets and are not written directly
-in the workflow file or source code.
+Neither token is written directly in the workflow file or source code.
 
 The workflow is configured to run a dry-run release when it is not executed on
 the `master` or `main` branch, or when it is processing the initial commit.

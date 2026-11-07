@@ -78,7 +78,7 @@ The tests verify that:
 - Extracted action items can include a description, owner, and due date.
 - The application calls the Gemini client when extracting action items.
 - The Gemini extractor can generate a meeting summary.
-- The application raises a clear error when `GEMINI_API_KEY` is missing.
+- The Gemini extractor raises a clear error when `GEMINI_API_KEY` is missing.
 
 The following test verifies that the Gemini extractor requires an API key:
 
@@ -87,7 +87,7 @@ test_gemini_extractor_requires_api_key
 ```
 
 This test removes the `GEMINI_API_KEY` environment variable and checks that the
-application raises the expected `ValueError`.
+extractor raises the expected `ValueError`.
 
 ### Review-model tests
 
@@ -193,8 +193,11 @@ The following scenarios were tested:
 12. Delete an action item.
 13. Check that upcoming deadlines are shown for open action items.
 
-The application was also tested without a Gemini API key to ensure that it
-produces a clear error message instead of failing silently.
+When the application is started with the Gemini extractor selected but without
+an API key, it does not open its window. It stops at startup and prints a
+`ValueError` explaining that `GEMINI_API_KEY` is required. When MeetNote is
+launched with `Start MeetNote.bat`, the console window stays open, so the
+message remains visible.
 
 The automated test suite consists of 26 tests. All 26 tests passed successfully.
 
